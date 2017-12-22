@@ -1,0 +1,59 @@
+---
+title: "Assignment: R Markdown and Plotly"
+author: "Tong Tat"
+date: "December 22, 2017"
+output: 
+  html_document:
+    keep_md: true
+    highlight: tango
+    theme: yeti
+---
+
+**Rpub Link:** [Click Here](http://rpubs.com/chuatt/343727)
+
+
+# 1. Introduction
+
+This is a document for Coursera Developing Data Product assignment. The objective is to create a web page presentation using R Markdown that features a plot created with Plotly.
+
+The dataset is coming from the **Volcano dataset** coming from the plotly package. I figured since plotly is good at plotting 3D images, so i googled for a dataset that will showcase a 3D image and in this case is a volcano. So here we go!
+
+
+# 2. Loading Dataset
+
+```{r, warning=FALSE, echo=TRUE, cache=FALSE, message=FALSE}
+# Clear cache first
+rm(list=ls())
+
+# Check for missing dependencies and load necessary R packages
+if(!require(plotly)){install.packages('plotly')}; library(plotly)
+
+# Load dataset
+data(volcano)
+```
+
+
+# 3. Data Visualization
+
+Let's take a look at the heatmap of the volcano first. Since the dataset is already available in plotly, we can easily plot the heatmap.
+
+```{r, warning=FALSE, echo=TRUE, cache=FALSE, message=FALSE}
+plot.volcano2 <- plot_ly(z = ~volcano) %>% add_heatmap()
+plot.volcano2
+```
+
+
+Now, adding on the contours for the volcano.
+
+```{r, warning=FALSE, echo=TRUE, cache=FALSE, message=FALSE}
+plot.volcano3 <- plot_ly(z = ~volcano) %>% add_contour()
+plot.volcano3
+```
+
+
+Alright, and finally the 3D plot of the volcano.
+
+```{r, warning=FALSE, echo=TRUE, cache=FALSE, message=FALSE}
+plot.volcano <- plot_ly(z = ~volcano, type='surface') 
+plot.volcano
+```
